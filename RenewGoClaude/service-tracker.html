@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Service Status Tracker</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
+    <link href="/assets/css/service-tracker.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container py-4">
+        <!-- Service Overview -->
+        <div class="row">
+            <div class="col-lg-8">
+                <!-- Status Header -->
+                <div class="card shadow-sm mb-4">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between align-items-start">
+                            <div>
+                                <h4 class="mb-2">Service #SR12345</h4>
+                                <p class="text-muted mb-0">2020 Toyota Camry</p>
+                            </div>
+                            <div class="text-end">
+                                <div class="badge bg-primary mb-2">In Progress</div>
+                                <p class="text-muted mb-0">Est. Completion: 2:30 PM</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Progress Tracker -->
+                <div class="card shadow-sm mb-4">
+                    <div class="card-header">
+                        <h5 class="mb-0">Service Progress</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="progress-tracker">
+                            <div class="progress-step completed" data-step="1">
+                                <div class="step-icon">
+                                    <i class="bi bi-check-circle-fill"></i>
+                                </div>
+                                <div class="step-content">
+                                    <h6>Vehicle Check-In</h6>
+                                    <p class="mb-1">Completed at 10:00 AM</p>
+                                    <small class="text-muted">Initial inspection done</small>
+                                </div>
+                            </div>
+
+                            <div class="progress-step active" data-step="2">
+                                <div class="step-icon">
+                                    <i class="bi bi-tools"></i>
+                                </div>
+                                <div class="step-content">
+                                    <h6>Service In Progress</h6>
+                                    <p class="mb-1">Started at 10:15 AM</p>
+                                    <small class="text-muted">Estimated duration: 2 hours</small>
+                                </div>
+                            </div>
+
+                            <div class="progress-step" data-step="3">
+                                <div class="step-icon">
+                                    <i class="bi bi-clipboard-check"></i>
+                                </div>
+                                <div class="step-content">
+                                    <h6>Quality Check</h6>
+                                    <p class="mb-1">Estimated start: 12:15 PM</p>
+                                    <small class="text-muted">Final inspection</small>
+                                </div>
+                            </div>
+
+                            <div class="progress-step" data-step="4">
+                                <div class="step-icon">
+                                    <i class="bi bi-flag"></i>
+                                </div>
+                                <div class="step-content">
+                                    <h6>Ready for Pickup</h6>
+                                    <p class="mb-1">Estimated: 2:30 PM</p>
+                                    <small class="text-muted">Service completed</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Service Details -->
+                <div class="card shadow-sm mb-4">
+                    <div class="card-header">
+                        <h5 class="mb-0">Service Details</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>Service</th>
+                                        <th>Status</th>
+                                        <th>Duration</th>
+                                        <th>Cost</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="servicesList">
+                                    <tr>
+                                        <td>Oil Change</td>
+                                        <td><span class="badge bg-success">Completed</span></td>
+                                        <td>45 mins</td>
+                                        <td>$49.99</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Brake Inspection</td>
+                                        <td><span class="badge bg-warning">In Progress</span></td>
+                                        <td>1 hour</td>
+                                        <td>$89.99</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sidebar -->
+            <div class="col-lg-4">
+                <!-- Additional Services -->
+                <div class="card shadow-sm mb-4">
+                    <div class="card-header">
+                        <h5 class="mb-0">Additional Services Required</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="alert alert-warning" role="alert">
+                            <h6 class="alert-heading">Brake Pad Replacement Recommended</h6>
+                            <p class="mb-0">Front brake pads are worn and need replacement.</p>
+                            <hr>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <span>Estimated Cost: $199.99</span>
+                                <div class="btn-group">
+                                    <button class="btn btn-sm btn-success">Approve</button>
+                                    <button class="btn btn-sm btn-danger">Decline</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Contact Section -->
+                <div class="card shadow-sm mb-4">
+                    <div class="card-header">
+                        <h5 class="mb-0">Need Assistance?</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="d-grid gap-2">
+                            <button class="btn btn-primary" id="startChat">
+                                <i class="bi bi-chat-dots me-2"></i>Chat with Service Advisor
+                            </button>
+                            <button class="btn btn-outline-primary" id="callCenter">
+                                <i class="bi bi-telephone me-2"></i>Call Service Center
+                            </button>
+                        </div>
+                        <hr>
+                        <div class="contact-info">
+                            <p class="mb-2"><strong>Service Advisor:</strong> Mike Johnson</p>
+                            <p class="mb-2"><strong>Direct Line:</strong> (555) 123-4567</p>
+                            <p class="mb-0"><strong>Email:</strong> service@example.com</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Chat Modal -->
+    <div class="modal fade" id="chatModal" tabindex="-1">
+        <div class="modal-dialog modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Chat with Service Advisor</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="chat-messages" id="chatMessages">
+                        <!-- Messages will be dynamically added here -->
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <input type="text" class="form-control" id="messageInput" placeholder="Type your message...">
+                    <button class="btn btn-primary" id="sendMessage">Send</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/assets/js/service-tracker.js"></script>
+</body>
+</html>

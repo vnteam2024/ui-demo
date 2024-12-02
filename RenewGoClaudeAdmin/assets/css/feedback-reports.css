@@ -1,0 +1,62 @@
+.metric-card {
+    background: #ffffff;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    height: 100%;
+}
+
+.metric-value {
+    font-size: 2em;
+    font-weight: bold;
+    color: #333;
+    margin: 10px 0;
+}
+
+.metric-trend {
+    font-size: 0.9em;
+    color: #666;
+}
+
+.trend-up {
+    color: #28a745;
+}
+
+.trend-down {
+    color: #dc3545;
+}
+
+.chart-container {
+    background: #ffffff;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    margin-bottom: 20px;
+    height: 300px;
+}
+
+.rating-stars {
+    color: #ffc107;
+}
+
+.table-responsive {
+    background: #ffffff;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.daterangepicker {
+    z-index: 1100;
+}
+
+.action-btn {
+    padding: 2px 8px;
+    font-size: 0.8em;
+}
+
+@media print {
+    .no-print {
+        display: none;
+    }
+}

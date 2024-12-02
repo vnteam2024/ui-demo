@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customer Management</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/datatables.net-bs5/css/dataTables.bootstrap5.min.css" rel="stylesheet">
+    <link href="/assets/css/customer-management.css" rel="stylesheet">
+</head>
+<body>
+<div class="container-fluid py-4">
+    <!-- Search and Actions Bar -->
+    <div class="card mb-4">
+        <div class="card-body">
+            <div class="row align-items-center">
+                <div class="col-md-6">
+                    <div class="search-bar">
+                        <i class="bi bi-search"></i>
+                        <input type="text" class="form-control" id="customerSearch"
+                               placeholder="Search by name, phone, email, or vehicle">
+                    </div>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addCustomerModal">
+                        <i class="bi bi-person-plus"></i> Add New Customer
+                    </button>
+                    <button class="btn btn-outline-primary">
+                        <i class="bi bi-download"></i> Export Data
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Customer Table -->
+    <div class="card mb-4">
+        <div class="card-body">
+            <table id="customerTable" class="table table-hover">
+                <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Contact</th>
+                    <th>Vehicle Info</th>
+                    <th>Last Service</th>
+                    <th>Loyalty Points</th>
+                    <th>Actions</th>
+                </tr>
+                </thead>
+                <tbody>
+                <!-- Populated dynamically -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Customer Profile Section (initially hidden) -->
+    <div id="customerProfile" class="card" style="display: none;">
+        <div class="card-header d-flex justify-content-between align-items-center">
+            <h5 class="mb-0">Customer Profile</h5>
+            <button class="btn btn-sm btn-outline-secondary" id="closeProfile">
+                <i class="bi bi-x-lg"></i>
+            </button>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <!-- Personal Information -->
+                <div class="col-md-4">
+                    <div class="profile-section">
+                        <h6>Personal Information</h6>
+                        <div id="personalInfo">
+                            <!-- Populated dynamically -->
+                        </div>
+                        <button class="btn btn-sm btn-outline-primary mt-2" id="editPersonalInfo">
+                            <i class="bi bi-pencil"></i> Edit
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Vehicle Information -->
+                <div class="col-md-4">
+                    <div class="profile-section">
+                        <h6>Vehicles</h6>
+                        <div id="vehicleInfo">
+                            <!-- Populated dynamically -->
+                        </div>
+                        <button class="btn btn-sm btn-outline-primary mt-2" id="addVehicle">
+                            <i class="bi bi-plus"></i> Add Vehicle
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Loyalty Program -->
+                <div class="col-md-4">
+                    <div class="profile-section">
+                        <h6>Loyalty Program</h6>
+                        <div id="loyaltyInfo">
+                            <!-- Populated dynamically -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Service History -->
+                <div class="col-12 mt-4">
+                    <h6>Service History</h6>
+                    <div class="table-responsive">
+                        <table class="table table-sm" id="serviceHistoryTable">
+                            <thead>
+                            <tr>
+                                <th>Date</th>
+                                <th>Service</th>
+                                <th>Vehicle</th>
+                                <th>Cost</th>
+                                <th>Warranty</th>
+                                <th>Status</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <!-- Populated dynamically -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Quick Actions -->
+                <div class="col-12 mt-4">
+                    <div class="d-flex gap-2">
+                        <button class="btn btn-primary" id="bookAppointment">
+                            <i class="bi bi-calendar-plus"></i> Book Appointment
+                        </button>
+                        <button class="btn btn-outline-primary" id="sendMessage">
+                            <i class="bi bi-envelope"></i> Send Message
+                        </button>
+                        <button class="btn btn-outline-primary" id="generateReport">
+                            <i class="bi bi-file-text"></i> Generate Report
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Add/Edit Customer Modal -->
+<div class="modal fade" id="addCustomerModal" tabindex="-1">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Add New Customer</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <form id="customerForm">
+                    <div class="row g-3">
+                        <!-- Personal Information -->
+                        <div class="col-md-6">
+                            <label class="form-label">First Name</label>
+                            <input type="text" class="form-control" name="firstName" required>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">Last Name</label>
+                            <input type="text" class="form-control" name="lastName" required>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">Email</label>
+                            <input type="email" class="form-control" name="email" required>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">Phone</label>
+                            <input type="tel" class="form-control" name="phone" required>
+                        </div>
+
+                        <!-- Vehicle Information -->
+                        <div class="col-12">
+                            <h6>Vehicle Information</h6>
+                        </div>
+                        <div class="col-md-4">
+                            <label class="form-label">Make</label>
+                            <input type="text" class="form-control" name="vehicleMake">
+                        </div>
+                        <div class="col-md-4">
+                            <label class="form-label">Model</label>
+                            <input type="text" class="form-control" name="vehicleModel">
+                        </div>
+                        <div class="col-md-4">
+                            <label class="form-label">Year</label>
+                            <input type="number" class="form-control" name="vehicleYear">
+                        </div>
+                        <div class="col-12">
+                            <label class="form-label">VIN</label>
+                            <input type="text" class="form-control" name="vin">
+                        </div>
+
+                        <!-- Additional Information -->
+                        <div class="col-12">
+                            <label class="form-label">Notes</label>
+                            <textarea class="form-control" rows="3" name="notes"></textarea>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-primary" id="saveCustomer">Save Customer</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/datatables.net/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/datatables.net-bs5/js/dataTables.bootstrap5.min.js"></script>
+<script src="/assets/js/customer-management.js"></script>
+</body>
+</html>

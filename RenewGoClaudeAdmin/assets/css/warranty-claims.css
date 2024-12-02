@@ -1,0 +1,26 @@
+.stats-card {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.trend {
+    font-size: 0.9em;
+    color: #666;
+}
+
+.trend-up { color: #28a745; }
+.trend-down { color: #dc3545; }
+
+.status-badge {
+    padding: 5px 10px;
+    border-radius: 15px;
+    font-size: 0.9em;
+}
+
+.status-active { background: #e8f5e9; color: #2e7d32; }
+.status-expired { background: #ffebee; color: #c62828; }
+.status-pending { background: #fff3e0; color: #ef6c00; }
+.status-approved { background: #e8f5e9; color: #2e7d32; }
+.status-rejected { background: #ffebee; color: #c62828; }

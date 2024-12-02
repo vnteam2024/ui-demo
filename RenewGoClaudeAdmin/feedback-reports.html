@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Feedback & Reports Dashboard</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.datatables.net/1.13.1/css/dataTables.bootstrap5.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" rel="stylesheet">
+    <link href="assets/css/feedback-reports.css" rel="stylesheet">
+</head>
+<body>
+<div class="container-fluid p-4">
+    <!-- Header Section -->
+    <div class="row mb-4">
+        <div class="col">
+            <h2>Feedback & Reports Dashboard</h2>
+        </div>
+        <div class="col text-end">
+            <div class="btn-group">
+                <button class="btn btn-outline-primary" id="exportCSV">Export CSV</button>
+                <button class="btn btn-outline-primary" id="printReport">Print</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Metrics Cards Row -->
+    <div class="row mb-4">
+        <div class="col-md-3">
+            <div class="metric-card">
+                <h3>Average Rating</h3>
+                <div class="metric-value" id="avgRating">0.0</div>
+                <div class="metric-trend" id="ratingTrend"></div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="metric-card">
+                <h3>Total Feedback</h3>
+                <div class="metric-value" id="totalFeedback">0</div>
+                <div class="metric-trend" id="feedbackTrend"></div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="metric-card">
+                <h3>Response Rate</h3>
+                <div class="metric-value" id="responseRate">0%</div>
+                <div class="metric-trend" id="responseTrend"></div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="metric-card">
+                <h3>Customer Satisfaction</h3>
+                <div class="metric-value" id="satisfaction">0%</div>
+                <div class="metric-trend" id="satisfactionTrend"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Filters Row -->
+    <div class="row mb-4">
+        <div class="col-md-3">
+            <label class="form-label">Date Range</label>
+            <input type="text" class="form-control" id="dateRange">
+        </div>
+        <div class="col-md-3">
+            <label class="form-label">Service Type</label>
+            <select class="form-select" id="serviceType" multiple>
+            </select>
+        </div>
+        <div class="col-md-3">
+            <label class="form-label">Technician</label>
+            <select class="form-select" id="technician" multiple>
+            </select>
+        </div>
+        <div class="col-md-3">
+            <label class="form-label">Rating</label>
+            <select class="form-select" id="ratingFilter">
+                <option value="">All Ratings</option>
+                <option value="5">5 Stars</option>
+                <option value="4">4 Stars</option>
+                <option value="3">3 Stars</option>
+                <option value="2">2 Stars</option>
+                <option value="1">1 Star</option>
+            </select>
+        </div>
+    </div>
+
+    <!-- Charts Row -->
+    <div class="row mb-4">
+        <div class="col-md-6">
+            <div class="chart-container">
+                <canvas id="ratingTrendChart"></canvas>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="chart-container">
+                <canvas id="servicePieChart"></canvas>
+            </div>
+        </div>
+    </div>
+
+    <!-- Feedback Table -->
+    <div class="row">
+        <div class="col">
+            <div class="table-responsive">
+                <table id="feedbackTable" class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Customer</th>
+                        <th>Service</th>
+                        <th>Technician</th>
+                        <th>Rating</th>
+                        <th>Comment</th>
+                        <th>Actions</th>
+                    </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Report Generation Modal -->
+<div class="modal fade" id="reportModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Generate Report</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <form id="reportForm">
+                    <div class="mb-3">
+                        <label class="form-label">Report Type</label>
+                        <select class="form-select" id="reportType">
+                            <option value="service">Service Performance</option>
+                            <option value="technician">Technician Productivity</option>
+                            <option value="satisfaction">Customer Satisfaction</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Format</label>
+                        <select class="form-select" id="reportFormat">
+                            <option value="pdf">PDF</option>
+                            <option value="excel">Excel</option>
+                        </select>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" id="generateReport">Generate</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.13.1/js/dataTables.bootstrap5.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/moment/moment.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+<script src="assets/js/feedback-reports.js"></script>
+</body>
+</html>

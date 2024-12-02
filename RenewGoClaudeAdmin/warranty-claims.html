@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Warranty & Claims Management</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.datatables.net/1.13.1/css/dataTables.bootstrap5.min.css" rel="stylesheet">
+    <link href="assets/css/warranty-claims.css" rel="stylesheet">
+</head>
+<body>
+<div class="container-fluid p-4">
+    <!-- Stats Cards -->
+    <div class="row mb-4">
+        <div class="col-md-3">
+            <div class="stats-card">
+                <h6>Active Warranties</h6>
+                <h2 id="activeWarranties">0</h2>
+                <div class="trend"></div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="stats-card">
+                <h6>Pending Claims</h6>
+                <h2 id="pendingClaims">0</h2>
+                <div class="trend"></div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="stats-card">
+                <h6>Approval Rate</h6>
+                <h2 id="approvalRate">0%</h2>
+                <div class="trend"></div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="stats-card">
+                <h6>Average Processing Time</h6>
+                <h2 id="processingTime">0 days</h2>
+                <div class="trend"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Tabs -->
+    <ul class="nav nav-tabs" id="warrantyTabs">
+        <li class="nav-item">
+            <a class="nav-link active" data-bs-toggle="tab" href="#warranties">Active Warranties</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" data-bs-toggle="tab" href="#claims">Claims</a>
+        </li>
+    </ul>
+
+    <!-- Tab Content -->
+    <div class="tab-content mt-3">
+        <!-- Warranties Tab -->
+        <div class="tab-pane fade show active" id="warranties">
+            <table id="warrantiesTable" class="table table-striped">
+                <thead>
+                <tr>
+                    <th>Warranty ID</th>
+                    <th>Vehicle/Part</th>
+                    <th>Customer</th>
+                    <th>Start Date</th>
+                    <th>Expiry Date</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                </tr>
+                </thead>
+            </table>
+        </div>
+
+        <!-- Claims Tab -->
+        <div class="tab-pane fade" id="claims">
+            <div class="d-flex justify-content-between mb-3">
+                <button class="btn btn-primary" id="newClaim">New Claim</button>
+                <div class="btn-group">
+                    <button class="btn btn-outline-secondary" data-status="all">All</button>
+                    <button class="btn btn-outline-warning" data-status="pending">Pending</button>
+                    <button class="btn btn-outline-success" data-status="approved">Approved</button>
+                    <button class="btn btn-outline-danger" data-status="rejected">Rejected</button>
+                </div>
+            </div>
+            <table id="claimsTable" class="table table-striped">
+                <thead>
+                <tr>
+                    <th>Claim ID</th>
+                    <th>Warranty ID</th>
+                    <th>Customer</th>
+                    <th>Issue Date</th>
+                    <th>Status</th>
+                    <th>Amount</th>
+                    <th>Actions</th>
+                </tr>
+                </thead>
+            </table>
+        </div>
+    </div>
+</div>
+
+<!-- New Claim Modal -->
+<div class="modal fade" id="claimModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">New Warranty Claim</h5>
+                <button class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <form id="claimForm">
+                    <div class="mb-3">
+                        <label>Warranty ID</label>
+                        <select class="form-select" id="warrantySelect" required></select>
+                    </div>
+                    <div class="mb-3">
+                        <label>Issue Description</label>
+                        <textarea class="form-control" required></textarea>
+                    </div>
+                    <div class="mb-3">
+                        <label>Claim Amount</label>
+                        <input type="number" class="form-control" required>
+                    </div>
+                    <div class="mb-3">
+                        <label>Supporting Documents</label>
+                        <input type="file" class="form-control" multiple>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-primary" id="submitClaim">Submit Claim</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.13.1/js/dataTables.bootstrap5.min.js"></script>
+<script src="assets/js/warranty-claims.js"></script>
+</body>
+</html>

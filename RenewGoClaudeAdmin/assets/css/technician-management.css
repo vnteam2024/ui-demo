@@ -1,0 +1,135 @@
+/* Stat Cards */
+.stat-card {
+    border-radius: 0.35rem;
+    box-shadow: 0 0.15rem 1.75rem 0 rgba(58, 59, 69, 0.15);
+}
+
+.border-left-primary {
+    border-left: 0.25rem solid #4e73df !important;
+}
+
+.border-left-success {
+    border-left: 0.25rem solid #1cc88a !important;
+}
+
+.border-left-warning {
+    border-left: 0.25rem solid #f6c23e !important;
+}
+
+.border-left-info {
+    border-left: 0.25rem solid #36b9cc !important;
+}
+
+/* Technician Status Indicators */
+.status-indicator {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    display: inline-block;
+    margin-right: 8px;
+}
+
+.status-available {
+    background-color: #1cc88a;
+}
+
+.status-busy {
+    background-color: #e74a3b;
+}
+
+.status-break {
+    background-color: #f6c23e;
+}
+
+/* Service Bay Cards */
+.bay-card {
+    border: 1px solid #e3e6f0;
+    border-radius: 0.35rem;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    transition: all 0.3s ease;
+}
+
+.bay-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 0.15rem 1.75rem 0 rgba(58, 59, 69, 0.15);
+}
+
+.bay-card.occupied {
+    border-left: 4px solid #e74a3b;
+}
+
+.bay-card.available {
+    border-left: 4px solid #1cc88a;
+}
+
+/* Equipment Status */
+.equipment-status {
+    padding: 0.5rem;
+    border-radius: 0.25rem;
+    margin-bottom: 0.5rem;
+}
+
+.equipment-status .progress {
+    height: 0.5rem;
+}
+
+/* Conflict Alerts */
+.conflict-alert {
+    padding: 1rem;
+    border-radius: 0.35rem;
+    margin-bottom: 1rem;
+    background-color: #fff3cd;
+    border: 1px solid #ffeeba;
+}
+
+.conflict-alert.high-priority {
+    background-color: #f8d7da;
+    border-color: #f5c6cb;
+}
+
+/* Schedule Builder */
+.schedule-block {
+    display: flex;
+    align-items: center;
+    margin-bottom: 0.5rem;
+}
+
+.schedule-block select {
+    margin-right: 0.5rem;
+}
+
+/* Table Customization */
+.table-hover tbody tr:hover {
+    background-color: rgba(78, 115, 223, 0.05);
+}
+
+.action-buttons .btn {
+    padding: 0.25rem 0.5rem;
+    font-size: 0.875rem;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .stat-card {
+        margin-bottom: 1rem;
+    }
+    
+    .table-responsive {
+        margin: 0;
+    }
+    
+    .bay-card {
+        margin: 0.5rem 0;
+    }
+}
+
+/* Modal Customization */
+.modal-header {
+    background-color: #4e73df;
+    color: white;
+}
+
+.modal-header .btn-close {
+    color: white;
+}

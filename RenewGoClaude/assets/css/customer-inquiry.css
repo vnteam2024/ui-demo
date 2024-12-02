@@ -1,0 +1,21 @@
+.select2-container {
+    width: 100% !important;
+}
+
+.faq-item {
+    cursor: pointer;
+}
+
+#liveChat {
+    transition: all 0.3s ease;
+}
+
+#liveChat:hover {
+    transform: translateY(-2px);
+}
+
+.error-feedback {
+    color: #dc3545;
+    font-size: 0.875em;
+    margin-top: 0.25rem;
+}

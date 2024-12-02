@@ -1,0 +1,112 @@
+/* Stat Cards */
+.stat-card {
+    transition: transform 0.3s ease;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.stat-card:hover {
+    transform: translateY(-5px);
+}
+
+.stat-icon {
+    width: 48px;
+    height: 48px;
+    background-color: rgba(0, 0, 0, 0.1);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Calendar Customization */
+.fc-event {
+    cursor: pointer;
+    border-radius: 4px;
+    padding: 2px 4px;
+}
+
+/* Status Colors */
+.status-pending {
+    background-color: #ffc107;
+    border-color: #e0a800;
+}
+
+.status-confirmed {
+    background-color: #28a745;
+    border-color: #218838;
+}
+
+.status-completed {
+    background-color: #6c757d;
+    border-color: #5a6268;
+}
+
+.status-cancelled {
+    background-color: #dc3545;
+    border-color: #c82333;
+}
+
+/* Technician Status */
+.technician-availability {
+    padding: 10px;
+    margin: 5px;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+}
+
+.technician-availability:hover {
+    transform: translateX(5px);
+}
+
+/* Service Bay Indicators */
+.bay-status {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    display: inline-block;
+    margin-right: 5px;
+}
+
+.bay-occupied {
+    background-color: #dc3545;
+}
+
+.bay-available {
+    background-color: #28a745;
+}
+
+/* Modal Customization */
+.modal-lg {
+    max-width: 800px;
+}
+
+.modal-content {
+    border-radius: 8px;
+}
+
+.modal-header {
+    background-color: #f8f9fa;
+    border-radius: 8px 8px 0 0;
+}
+
+/* Filter Section */
+.filter-section .form-label {
+    font-weight: 500;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .fc-header-toolbar {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .stat-card {
+        margin-bottom: 1rem;
+    }
+
+    .modal-lg {
+        max-width: 95%;
+        margin: 10px;
+    }
+}

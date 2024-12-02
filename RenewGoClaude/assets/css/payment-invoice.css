@@ -1,0 +1,50 @@
+.payment-method-radio {
+    padding: 15px;
+    border: 1px solid #dee2e6;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.payment-method-radio:hover {
+    background-color: #f8f9fa;
+}
+
+.payment-method-radio .form-check-input:checked ~ .form-check-label {
+    color: #0d6efd;
+}
+
+.payment-summary {
+    background-color: #f8f9fa;
+    padding: 15px;
+    border-radius: 8px;
+}
+
+.success-animation {
+    animation: scaleUp 0.5s ease;
+}
+
+@keyframes scaleUp {
+    0% {
+        transform: scale(0);
+    }
+    80% {
+        transform: scale(1.1);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+.table th {
+    background-color: #f8f9fa;
+}
+
+.table tfoot {
+    background-color: #f8f9fa;
+}
+
+.form-control:focus {
+    box-shadow: 0 0 0 0.2rem rgba(13, 110, 253, 0.15);
+}

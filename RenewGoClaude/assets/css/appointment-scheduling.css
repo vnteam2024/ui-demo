@@ -1,0 +1,62 @@
+.time-slots-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    gap: 10px;
+    margin-top: 15px;
+}
+
+.time-slot {
+    padding: 10px;
+    border: 1px solid #dee2e6;
+    border-radius: 4px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.time-slot:hover {
+    background-color: #f8f9fa;
+}
+
+.time-slot.selected {
+    background-color: #0d6efd;
+    color: white;
+    border-color: #0d6efd;
+}
+
+.time-slot.unavailable {
+    background-color: #f8f9fa;
+    color: #6c757d;
+    cursor: not-allowed;
+    opacity: 0.5;
+}
+
+.summary-section {
+    font-size: 0.9rem;
+}
+
+.summary-section h6 {
+    color: #495057;
+    margin-bottom: 10px;
+}
+
+.total-section {
+    background-color: #f8f9fa;
+    padding: 15px;
+    border-radius: 4px;
+    text-align: right;
+}
+
+#calendar {
+    height: 500px;
+}
+
+.fc-day-future:hover {
+    background-color: #f8f9fa;
+    cursor: pointer;
+}
+
+.fc-day-past {
+    background-color: #f8f9fa;
+    opacity: 0.5;
+}

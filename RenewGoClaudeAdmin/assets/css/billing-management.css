@@ -1,0 +1,19 @@
+.filter-btn.active {
+    font-weight: bold;
+}
+
+.btn-group {
+    margin-bottom: 20px;
+}
+
+#invoicesTable {
+    width: 100%;
+}
+
+.modal-dialog {
+    max-width: 500px;
+}
+
+.action-buttons {
+    white-space: nowrap;
+}

@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment & Invoice</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
+    <link href="/assets/css/payment-invoice.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container py-4">
+        <div class="row">
+            <!-- Invoice Section -->
+            <div class="col-lg-8">
+                <div class="card shadow-sm mb-4">
+                    <div class="card-header d-flex justify-content-between align-items-center">
+                        <h4 class="mb-0">Invoice #INV-2024-001</h4>
+                        <button class="btn btn-outline-primary" id="downloadInvoice">
+                            <i class="bi bi-download me-2"></i>Download PDF
+                        </button>
+                    </div>
+                    <div class="card-body">
+                        <!-- Customer & Vehicle Info -->
+                        <div class="row mb-4">
+                            <div class="col-md-6">
+                                <h6>Customer Information</h6>
+                                <p class="mb-1">John Doe</p>
+                                <p class="mb-1">john.doe@email.com</p>
+                                <p class="mb-1">(555) 123-4567</p>
+                            </div>
+                            <div class="col-md-6 text-md-end">
+                                <h6>Vehicle Information</h6>
+                                <p class="mb-1">2020 Toyota Camry</p>
+                                <p class="mb-1">VIN: 1HGCM82633A123456</p>
+                                <p class="mb-1">Mileage: 45,230</p>
+                            </div>
+                        </div>
+
+                        <!-- Service Details -->
+                        <div class="table-responsive mb-4">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>Service/Part</th>
+                                        <th>Description</th>
+                                        <th class="text-end">Hours/Qty</th>
+                                        <th class="text-end">Rate/Price</th>
+                                        <th class="text-end">Amount</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Oil Change</td>
+                                        <td>Full synthetic oil change service</td>
+                                        <td class="text-end">1.0</td>
+                                        <td class="text-end">$49.99</td>
+                                        <td class="text-end">$49.99</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Synthetic Oil</td>
+                                        <td>5W-30 Full Synthetic (5 qts)</td>
+                                        <td class="text-end">5</td>
+                                        <td class="text-end">$8.99</td>
+                                        <td class="text-end">$44.95</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Oil Filter</td>
+                                        <td>Premium oil filter</td>
+                                        <td class="text-end">1</td>
+                                        <td class="text-end">$12.99</td>
+                                        <td class="text-end">$12.99</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Brake Service</td>
+                                        <td>Front brake inspection and service</td>
+                                        <td class="text-end">1.5</td>
+                                        <td class="text-end">$89.99</td>
+                                        <td class="text-end">$134.99</td>
+                                    </tr>
+                                </tbody>
+                                <tfoot>
+                                    <tr>
+                                        <td colspan="4" class="text-end">Subtotal:</td>
+                                        <td class="text-end">$242.92</td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="4" class="text-end">Tax (8%):</td>
+                                        <td class="text-end">$19.43</td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="4" class="text-end">Discount (10%):</td>
+                                        <td class="text-end">-$24.29</td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="4" class="text-end"><strong>Total:</strong></td>
+                                        <td class="text-end"><strong>$238.06</strong></td>
+                                    </tr>
+                                </tfoot>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Payment Section -->
+            <div class="col-lg-4">
+                <div class="card shadow-sm mb-4">
+                    <div class="card-header">
+                        <h5 class="mb-0">Payment Details</h5>
+                    </div>
+                    <div class="card-body">
+                        <!-- Payment Method Selection -->
+                        <div class="mb-4">
+                            <label class="form-label">Select Payment Method</label>
+                            <div class="payment-methods">
+                                <div class="form-check payment-method-radio">
+                                    <input class="form-check-input" type="radio" name="paymentMethod" id="cardPayment" checked>
+                                    <label class="form-check-label" for="cardPayment">
+                                        <i class="bi bi-credit-card me-2"></i>Credit/Debit Card
+                                    </label>
+                                </div>
+                                <div class="form-check payment-method-radio">
+                                    <input class="form-check-input" type="radio" name="paymentMethod" id="digitalWallet">
+                                    <label class="form-check-label" for="digitalWallet">
+                                        <i class="bi bi-wallet2 me-2"></i>Digital Wallet
+                                    </label>
+                                </div>
+                                <div class="form-check payment-method-radio">
+                                    <input class="form-check-input" type="radio" name="paymentMethod" id="cashPayment">
+                                    <label class="form-check-label" for="cashPayment">
+                                        <i class="bi bi-cash me-2"></i>Cash
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Card Payment Form -->
+                        <div id="cardPaymentForm">
+                            <div class="mb-3">
+                                <label class="form-label">Card Number</label>
+                                <input type="text" class="form-control" id="cardNumber" placeholder="1234 5678 9012 3456">
+                            </div>
+                            <div class="row mb-3">
+                                <div class="col-6">
+                                    <label class="form-label">Expiry Date</label>
+                                    <input type="text" class="form-control" id="expiryDate" placeholder="MM/YY">
+                                </div>
+                                <div class="col-6">
+                                    <label class="form-label">CVV</label>
+                                    <input type="text" class="form-control" id="cvv" placeholder="123">
+                                </div>
+                            </div>
+                            <div class="mb-4">
+                                <label class="form-label">Name on Card</label>
+                                <input type="text" class="form-control" id="cardName" placeholder="John Doe">
+                            </div>
+                        </div>
+
+                        <!-- Payment Summary -->
+                        <div class="payment-summary mb-4">
+                            <div class="d-flex justify-content-between mb-2">
+                                <span>Subtotal</span>
+                                <span>$242.92</span>
+                            </div>
+                            <div class="d-flex justify-content-between mb-2">
+                                <span>Tax (8%)</span>
+                                <span>$19.43</span>
+                            </div>
+                            <div class="d-flex justify-content-between mb-2">
+                                <span>Discount (10%)</span>
+                                <span>-$24.29</span>
+                            </div>
+                            <hr>
+                            <div class="d-flex justify-content-between">
+                                <strong>Total</strong>
+                                <strong>$238.06</strong>
+                            </div>
+                        </div>
+
+                        <!-- Pay Button -->
+                        <div class="d-grid">
+                            <button class="btn btn-primary btn-lg" id="payNowBtn">
+                                Pay Now $238.06
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Payment Success Modal -->
+    <div class="modal fade" id="paymentSuccessModal" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Payment Successful</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body text-center">
+                    <div class="success-animation mb-4">
+                        <i class="bi bi-check-circle-fill text-success display-1"></i>
+                    </div>
+                    <h4>Thank you for your payment!</h4>
+                    <p class="mb-4">Your payment of $238.06 has been processed successfully.</p>
+                    <div class="d-grid gap-2">
+                        <button class="btn btn-primary" onclick="downloadReceipt()">
+                            <i class="bi bi-download me-2"></i>Download Receipt
+                        </button>
+                        <button class="btn btn-outline-primary" onclick="location.href='/dashboard'">
+                            Return to Dashboard
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="/assets/js/payment-invoice.js"></script>
+</body>
+</html>
